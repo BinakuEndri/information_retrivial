@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Web Application - Movies</title>
+    <style>
+        body {
+            background-color: #304463;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            background-color: rgba(31, 42, 68, 0.5); /* Transparent background */
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+        }
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 0 20px;
+            margin-top: 20px;
+        }
+        .movie-box {
+            width: calc(25% - 20px); /* Four boxes per row */
+            margin-bottom: 30px;
+            background-color: #131842;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .movie-box:hover {
+            transform: translateY(-5px);
+        }
+        .movie-box img {
+            width: 100%;
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .movie-details {
+            padding: 15px;
+            background-color: #131842;
+        }
+        .movie-details h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .movie-details p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagination button {
+            background-color: #1f2a44;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+        }
+        .pagination button:hover {
+            background-color: #304463;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="movies.html">Movies</a>
+    <a href="actors.html">Actors</a>
+    <a href="reviews.html">Reviews</a>
+</div>
+
+<div class="movie-list">
+    <!-- First Page -->
+    <div class="movie-box" onclick="goToMovieDetails('1')">
+        <img src="images/inception.jpg" alt="Movie Poster">
+        <div class="movie-details">
+            <h2>Inception</h2>
+            <p>2010</p>
+            <p>Science Fiction, Action</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <div class="movie-box" onclick="goToMovieDetails('2')">
+        <img src="images/interstellar.jpg" alt="Another Movie Poster">
+        <div class="movie-details">
+            <h2>Interstellar</h2>
+            <p>2014</p>
+            <p>Science Fiction, Adventure, Drama</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <div class="movie-box" onclick="goToMovieDetails('3')">
+        <img src="images/prestige.jpg" alt="Third Movie Poster">
+        <div class="movie-details">
+            <h2>The Prestige</h2>
+            <p>2006</p>
+            <p>Mystery, Thriller, Science Fiction</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <div class="movie-box" onclick="goToMovieDetails('4')">
+        <img src="images/thedarkknight.jpg" alt="Fourth Movie Poster">
+        <div class="movie-details">
+            <h2>The Dark Knight</h2>
+            <p>2008</p>
+            <p>Superhero, Action, Crime</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <!-- Second Page -->
+    <div class="movie-box" onclick="goToMovieDetails('5')">
+        <img src="images/oppenheimer.jpg" alt="Fifth Movie Poster">
+        <div class="movie-details">
+            <h2>Oppenheimer</h2>
+            <p>2023</p>
+            <p>Biography, Drama, History</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <div class="movie-box" onclick="goToMovieDetails('6')">
+        <img src="images/rises.jpg" alt="Sixth Movie Poster">
+        <div class="movie-details">
+            <h2>The Dark Knight Rises</h2>
+            <p>2012</p>
+            <p>Superhero, Action, Thriller</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <div class="movie-box" onclick="goToMovieDetails('7')">
+        <img src="images/dunkirk.jpg" alt="Seventh Movie Poster">
+        <div class="movie-details">
+            <h2>Dunkirk</h2>
+            <p>2017</p>
+            <p>War, Drama, Action</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+    <div class="movie-box" onclick="goToMovieDetails('8')">
+        <img src="images/tenet.jpg" alt="Eighth Movie Poster">
+        <div class="movie-details">
+            <h2>Tenet</h2>
+            <p>2020</p>
+            <p>Science Fiction, Action, Thriller</p>
+            <p>Christopher Nolan</p>
+        </div>
+    </div>
+</div>
+
+<div class="pagination">
+    <button onclick="showPage(1)">1</button>
+    <button onclick="showPage(2)">2</button>
+</div>
+
+<script>
+    // Function to navigate to movie details page
+    function goToMovieDetails(movieId) {
+        window.location.href = `movieDetails.html?id=${movieId}`;
+    }
+
+    // Function to show respective page content
+    function showPage(pageNumber) {
+        // Assuming each page shows 4 rows with 4 movie boxes in each row
+        // For simplicity, replace movie boxes with appropriate content for each page
+        // You can dynamically load content here based on the pageNumber
+        alert(`Showing page ${pageNumber}`);
+    }
+</script>
+
+</body>
+</html>

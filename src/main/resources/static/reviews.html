@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Web Application - Reviews</title>
+    <style>
+        body {
+            background-color: #304463;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            background-color: rgba(31, 42, 68, 0.5); /* Transparent background */
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+        }
+        .reviews-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .review-box {
+            width: 80%; /* Adjust width as needed */
+            background-color: #131842;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .review-box img {
+            width: 100%;
+            max-width: 300px; /* Adjust as needed */
+            height: auto;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .review-details {
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            color: white;
+        }
+        .review-details h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .review-details p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .reviewer {
+            margin-top: auto;
+            text-align: right;
+        }
+        .reviewer p {
+            font-size: 14px;
+            color: #ccc;
+            margin: 0;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: auto;
+        }
+        .rating p {
+            font-size: 14px;
+            color: #ccc;
+            margin: 0;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="movies.html">Movies</a>
+    <a href="actors.html">Actors</a>
+    <a href="reviews.html">Reviews</a>
+</div>
+
+<div class="reviews-list">
+    <!-- First Row -->
+    <div class="review-box">
+        <img src="images/inception.jpg" alt="Movie Poster">
+        <div class="review-details">
+            <h2>Inception</h2>
+            <p>An amazing journey through dreams and reality. A masterpiece by Christopher Nolan.</p>
+        </div>
+        <div class="reviewer">
+            <p>Reviewed by John Doe</p>
+        </div>
+        <div class="rating">
+            <img src="images/star.png" alt="Star" width="20">
+            <p>9.5/10</p>
+        </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="review-box">
+        <img src="images/interstellar.jpg" alt="Movie Poster">
+        <div class="review-details">
+            <h2>Interstellar</h2>
+            <p>A breathtaking journey across galaxies with profound messages about love and humanity.</p>
+        </div>
+        <div class="reviewer">
+            <p>Reviewed by Jane Smith</p>
+        </div>
+        <div class="rating">
+            <img src="images/star.png" alt="Star" width="20">
+            <p>9.8/10</p>
+        </div>
+    </div>
+
+    <!-- Third Row -->
+    <div class="review-box">
+        <img src="images/prestige.jpg" alt="Movie Poster">
+        <div class="review-details">
+            <h2>The Prestige</h2>
+            <p>A mind-bending thriller with twists that keep you guessing until the very end.</p>
+        </div>
+        <div class="reviewer">
+            <p>Reviewed by Michael Brown</p>
+        </div>
+        <div class="rating">
+            <img src="images/star.png" alt="Star" width="20">
+            <p>9.7/10</p>
+        </div>
+    </div>
+
+    <!-- Fourth Row -->
+    <div class="review-box">
+        <img src="images/thedarkknight.jpg" alt="Movie Poster">
+        <div class="review-details">
+            <h2>The Dark Knight</h2>
+            <p>An intense crime thriller that redefines superhero movies.</p>
+        </div>
+        <div class="reviewer">
+            <p>Reviewed by Emily Johnson</p>
+        </div>
+        <div class="rating">
+            <img src="images/star.png" alt="Star" width="20">
+            <p>9.9/10</p>
+        </div>
+    </div>
+
+    <!-- Add more review-boxes as needed -->
+</div>
+
+</body>
+</html>
