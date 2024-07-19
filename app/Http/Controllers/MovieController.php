@@ -6,54 +6,20 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
-{
-    // Replace 'yourkey' with your actual API key
-$apiKey = 'ba9fc822';
-$baseUrl = 'http://www.omdbapi.com/';
-
-// Build the URL with the API key and query
-$url = $baseUrl . '?apikey=' . $apiKey;
-
-// Initialize a cURL session
-$ch = curl_init();
-
-// Set the URL
-curl_setopt($ch, CURLOPT_URL, $url);
-// Return the response instead of outputting it
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-// Execute the cURL request
-$response = curl_exec($ch);
-
-// Check for errors
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
-} else {
-    // Decode the JSON response
-    $data = json_decode($response, true);
-
-    // Display the data
-    if (isset($data['Error'])) {
-        echo 'Error: ' . $data['Error'];
-    } else {
-        echo 'Title: ' . $data['Title'] . '<br>';
-        echo 'Year: ' . $data['Year'] . '<br>';
-        echo 'Director: ' . $data['Director'] . '<br>';
-        echo 'Plot: ' . $data['Plot'] . '<br>';
+    public function index(Request $request)
+    {
+        $query = $request->input('query');
+        
+        $movies = Movie::when($query, function ($queryBuilder, $query) {
+            return $queryBuilder->where('title', 'like', "%$query%")
+                                ->orWhere('genre', 'like', "%$query%")
+                                ->orWhere('director', 'like', "%$query%")
+                                ->orWhere('release_year', 'like', "%$query%");
+        })->paginate(10);
+    
+        return view('movies', compact('movies'))->with('query', $query);
     }
-}
 
-// Close the cURL session
-curl_close($ch);
-
-    // Fetch all movies from the database
-    $movies = Movie::paginate(21);
-
-
-    // Pass both variables to the view
-    return view('movies', ['movies' => $movies, 'moviesSoon' => $data]);
-}
     public function show($id)
     {
         $movie = Movie::with('actors')->find($id);
@@ -63,5 +29,23 @@ curl_close($ch);
         }
 
         return view('movieDetails', ['movie' => $movie]);
+    }
+    
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // Filter results based on title, genre, director, or release year
+        if ($query) {
+            $movies = Movie::where('title', 'like', "%$query%")
+                            ->orWhere('genre', 'like', "%$query%")
+                            ->orWhere('director', 'like', "%$query%")
+                            ->orWhere('release_year', 'like', "%$query%")
+                            ->paginate(10);
+        } else {
+            $movies = Movie::paginate(10);
+        }
+    
+        return view('movies', compact('movies'))->with('query', $query);
     }
 }
